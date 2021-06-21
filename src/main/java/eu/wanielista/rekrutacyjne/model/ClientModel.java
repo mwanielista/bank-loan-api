@@ -1,13 +1,9 @@
 package eu.wanielista.rekrutacyjne.model;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.apache.tomcat.jni.Local;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Date;
 
 @Data
 @Entity
@@ -18,16 +14,16 @@ public class ClientModel {
     private Long id;
 
     @Column(name="first_name")
-    private String _firstName;
+    private String firstName;
 
     @Column(name="last_name")
-    private String _lastName;
+    private String lastName;
 
     @Column(name="loan_value")
-    private Double _loanValue;
+    private Double loanValue;
 
     @Column(name="loan_end_date")
-    private LocalDate _loanEndDate;
+    private LocalDate loanEndDate;
 
     @Column(name="has_loan")
     private Boolean hasLoan;
@@ -35,12 +31,20 @@ public class ClientModel {
     @Column(name="has_updated_time")
     private Boolean hasUpdatedTime;
 
-    public ClientModel(String _firstName, String _lastName){
-        this._firstName = _firstName;
-        this._lastName = _lastName;
+    @Column(name="is_accepted")
+    private Boolean isAccepted;
+
+    @Column(name="last_ip")
+    private String lastLoggedIP;
+
+    public ClientModel(String firstName, String lastName, String lassLoggedIP){
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.lastLoggedIP = lassLoggedIP;
+        setHasLoan(false);
+        setHasUpdatedTime(false);
+        setIsAccepted(false);
     }
 
-    public ClientModel() {
-
-    }
+    public ClientModel() {}
 }
